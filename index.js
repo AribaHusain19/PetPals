@@ -17,24 +17,29 @@ app.use(express.json());
 
 app.use(morgan('tiny'));
 
-app.use('/public',express.static(path.join(__dirname,'public')));
 // Middleware to enable CORS.CORS allows your application to handle requests from different origins, which is particularly useful for APIs that are accessed from a web client hosted on a different domain.
 app.use(cors());
 
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 //routes
 app.use('/api/category', categoryRoutes);
 app.use('/api/pets',petRoutes);
 app.use('/api/adoption',adoptionRoutes);
 
+app.use('/public',express.static(path.join(__dirname,'public')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+
+ 
 //To use mongodb with express, you'll need the mongoose package to connect to the MongoDB database.
 const mongourl= 'mongodb://localhost:27017/PetPalsDatabase';
 
 
-app.get("/", (req, res) => {
-    app.use(express.static(path.resolve(__dirname, "client", "build")));
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    });
+
     
 //starting the server
 app.listen(4000,() =>{
@@ -44,7 +49,8 @@ app.listen(4000,() =>{
 
 //Connects to the MongoDB database using Mongoose.
 mongoose.connect(mongourl,{
-    useNewUrlParser:true
+    useNewUrlParser:true,
+    useUnifiedTopology:true
 }).then(()=>{
     console.log("connected to mongoDB")
 }).catch((err) => {

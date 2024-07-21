@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { Container, createTheme,CssBaseline,ThemeProvider } from '@mui/material';
-import MainFeaturedPost from './Components/MainFeaturedPost';
-import { mainFeaturePost } from './data';
-import FeaturedPet from './Components/FeaturedPet';
+//import MainFeaturedPost from './Components/MainFeaturedPost';
+//import { mainFeaturePost } from './data';
+//import FeaturedPet from './Components/FeaturedPet';
 import Header from './Components/Header';
-import Grid from '@mui/material/Grid';
+//import Grid from '@mui/material/Grid';
 import Footer from './Components/Footer';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllCategories } from './redux/actions/categories';
 import { BrowserRouter } from 'react-router-dom';
-import { fetchAllPets } from './redux/actions/pets';
+//import { fetchAllPets } from './redux/actions/pets';
 import Router from './router';
 import SnackBarComponent from './Components/SnackBarComponent';
 

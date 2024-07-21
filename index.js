@@ -4,7 +4,7 @@ const mongoose=require('mongoose');
 const cors=require('cors');
 const path= require('path');
 const morgan= require('morgan');
-
+require('dotenv').config();
 //defining our routes to make our index.js aware aboute the category routes.
 const categoryRoutes = require('./routes/category');
 const petRoutes = require('./routes/pet');
@@ -12,6 +12,10 @@ const adoptionRoutes = require('./routes/adoption');
 //creating an instance of the application,it will be used to set up routes and middleware
 const app=express();
 
+
+const PORT = process.env.PORT || 4000;
+const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:4000';
+console.log('Backend URL:', BACKEND_URL);
 // Middleware to parse JSON bodies
 app.use(express.json());
 
@@ -42,8 +46,8 @@ const mongourl= 'mongodb://localhost:27017/PetPalsDatabase';
 
     
 //starting the server
-app.listen(4000,() =>{
-    console.log("App is listening on port 4000");
+app.listen(PORT,() =>{
+    console.log(`App is listening on port ${PORT}`);
 })
 
 

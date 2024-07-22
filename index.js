@@ -55,8 +55,7 @@ app.listen(PORT,() =>{
 
 
 //Connects to the MongoDB database using Mongoose.
-mongoose.connect(mongourl,{
-}).then(()=>{
+mongoose.connect(mongourl).then(()=>{
     console.log("connected to mongoDB")
 }).catch((err) => {
     console.log("Error in connecting to mongoDB");

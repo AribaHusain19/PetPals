@@ -56,8 +56,6 @@ app.listen(PORT,() =>{
 
 //Connects to the MongoDB database using Mongoose.
 mongoose.connect(mongourl,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
 }).then(()=>{
     console.log("connected to mongoDB")
 }).catch((err) => {

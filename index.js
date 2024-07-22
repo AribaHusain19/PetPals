@@ -5,6 +5,7 @@ const cors=require('cors');
 const path= require('path');
 const morgan= require('morgan');
 require('dotenv').config();
+const serverless = require('serverless-http');
 //defining our routes to make our index.js aware aboute the category routes.
 const categoryRoutes = require('./routes/category');
 const petRoutes = require('./routes/pet');
@@ -40,7 +41,7 @@ app.get('*', (req, res) => {
 
  
 //To use mongodb with express, you'll need the mongoose package to connect to the MongoDB database.
-const mongourl= 'mongodb://localhost:27017/PetPalsDatabase';
+const mongourl= process.env.MONGO_URL ||'mongodb://localhost:27017/PetPalsDatabase';
 
 
 
@@ -68,4 +69,5 @@ mongoose.connect(mongourl,{
 mongoose.connection.on('error',(err) =>{
     console.log("Error in connecting to mongoDb",err);
 })*/
-
+module.exports=app;
+module.exports.handler=serverless(app);

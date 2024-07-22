@@ -26,7 +26,7 @@ app.use(morgan('tiny'));
 app.use(cors());
 
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+//app.use(express.static(path.join(__dirname, 'client/build')));
 
 //routes
 app.use('/api/category', categoryRoutes);
@@ -34,14 +34,16 @@ app.use('/api/pets',petRoutes);
 app.use('/api/adoption',adoptionRoutes);
 
 app.use('/public',express.static(path.join(__dirname,'public')));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
-
+}
  
 //To use mongodb with express, you'll need the mongoose package to connect to the MongoDB database.
-const mongourl= process.env.MONGO_URL ||'mongodb://localhost:27017/PetPalsDatabase';
+const mongourl= process.env.MONGO_URI ||'mongodb://localhost:27017/PetPalsDatabase';
 
 
 

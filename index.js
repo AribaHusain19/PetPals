@@ -10,13 +10,14 @@ const serverless = require('serverless-http');
 const categoryRoutes = require('./routes/category');
 const petRoutes = require('./routes/pet');
 const adoptionRoutes = require('./routes/adoption');
+//const { BACKEND_URI } = require('./client/src/utils/constants');
 //creating an instance of the application,it will be used to set up routes and middleware
 const app=express();
 
 
 const PORT = process.env.PORT || 4000;
-const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:4000';
-console.log('Backend URL:', BACKEND_URL);
+const BACKEND_URI = process.env.BACKEND_URI || 'http://localhost:4000';
+console.log('Backend URL:', BACKEND_URI);
 // Middleware to parse JSON bodies
 app.use(express.json());
 
@@ -43,7 +44,7 @@ app.get('*', (req, res) => {
 }
  
 //To use mongodb with express, you'll need the mongoose package to connect to the MongoDB database.
-const mongourl= process.env.MONGO_URI ||'mongodb://localhost:27017/PetPalsDatabase';
+const mongourl= process.env.MONGO_URI ||'mongodb+srv://ariba:ariba@cluster0.u8thuxs.mongodb.net/PetPalsDatabase?retryWrites=true&w=majority&appName=Cluster0';
 
 
 

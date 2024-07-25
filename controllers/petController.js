@@ -67,7 +67,7 @@ exports.create= async(req,res)=>{
         res.json({message: 'Pet Created!', createdPet});
     }
     catch(error){
-        console.log(errpr);
+        console.log(error);
         res.status(400).json(error);
     }
    
